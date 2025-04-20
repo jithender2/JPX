@@ -13,8 +13,10 @@ public class Settings {
 
 	public static final int rootCertValidityDays = 3650;
 
-	public static final int certValidityDays = 10;
-	public static final char[] rootKeyStorePassword = "JPXP4SSP0WRD00".toCharArray();
+	public static final int certValidityDays = 10; 
+	// WARNING: Default password for testing only. Override this in when building the project.
+	public static final char[] rootKeyStorePassword = "JPXP4SSP0WRD00".toCharArray(); 
+	// WARNING: Default password for testing only. Override this in when building the project.
 	public static final char[] keyStorePassword = "JPXP4SSP0WRD00".toCharArray();		
 	public static final String certAliasName = "JPX app";
 
