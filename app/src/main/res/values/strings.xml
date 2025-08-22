@@ -1,0 +1,19 @@
+<resources>
+
+    <string name="app_name">JPX</string>
+    <string name="target">Target</string>
+    <string name="interceptor">Interceptor</string>
+    <string name="repeater">Repeater</string>
+    <string name="http_history">History</string>
+
+    <string-array name="spinner_options">
+        <item>Request</item>
+        <item>Response</item>
+    </string-array>
+    <string-array name="response_time_conditions">
+        <item>No Filter</item>
+        <item>Less than</item>
+        <item>Greater than</item>
+    </string-array>
+
+</resources>

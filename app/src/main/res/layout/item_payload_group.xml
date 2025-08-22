@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    
+    android:orientation="vertical"
+    android:padding="12dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Payload Type"
+			android:textColor="#ffffff"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btn_remove_payload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Remove payload"
+            android:src="@android:drawable/ic_menu_delete" />
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinner_payload_type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Payload Values (one per line)"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/et_payload_values"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:gravity="top"
+        android:hint="value1\nvalue2\nvalue3"
+        android:inputType="textMultiLine" />
+
+    <!-- Each payload group has its own "Add From External" button -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/dialog_add_external_button"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="end"
+		android:textColor="#000000"
+		app:backgroundTint="@null"
+        android:background="@drawable/rounded_corner"
+        android:paddingLeft="4dp"
+		android:paddingRight="4dp"
+		android:paddingBottom="0dp"
+		android:paddingTop="0dp"
+        android:text="Add From External" />
+
+</LinearLayout>

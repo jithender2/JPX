@@ -1,0 +1,319 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2f323b"
+    android:orientation="vertical"
+    android:padding="8dp" >
+
+    <!-- Input Section (will be hidden after fuzzing starts) -->
+
+    <LinearLayout
+        android:id="@+id/layout_input_section"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <!-- Request Template -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp"
+				android:layout_margin="6dp"
+                android:text="HTTP Request Template"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_request_template"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_drawable"
+                android:gravity="top"
+                android:hint="Enter HTTP request with {{FUZZ}} placeholders"
+                
+
+                android:lines="12"
+				android:textSize="16sp"
+				android:fontFamily="monospace"
+                    android:inputType="textMultiLine|textNoSuggestions"
+                android:padding="10dp"
+                android:textColor="#ffffff"
+                 />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#ff26262e" />
+
+            <!-- Target URL -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:text="Target URL"
+				android:layout_margin="4dp"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_target_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edittext_drawable"
+                android:hint="https://example.com"
+                android:inputType="textUri"
+                android:padding="10dp"
+                android:textColor="#ffffff"
+                android:textColorHint="#cccccc" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="10dp"
+                android:background="#ff26262e" />
+            <!-- Thread Count Selector -->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="12dp"
+                android:text="Thread Count"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinner_thread_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+				android:minWidth="60dp"
+                android:layout_marginBottom="10dp"
+                android:backgroundTint="#ffffff"
+                android:popupBackground="#ffffff"
+                android:spinnerMode="dropdown" />
+
+            <!-- Buttons -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal" >
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_add_payload"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner"
+                    android:text="Add Payload List"
+                    android:textColor="#000000"
+                    app:backgroundTint="@null" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_start_fuzzing"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/rounded_corner"
+                    android:text="Start Fuzzing"
+                    android:textColor="#000000"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <!-- Status and Progress -->
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Results"
+                android:textColor="#ffffff"
+                android:textStyle="bold" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+		android:id="@+id/fuzzingLayoutOptionsPlayout"
+		android:visibility="gone"
+        android:layout_margin="5dp" >
+
+        <TextView
+            android:id="@+id/tv_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="6dp"
+            android:text="Ready"
+            android:textColor="#ffffff"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/fuzzing_filter"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_margin="6dp"
+            android:layout_toLeftOf="@id/intruder_cancel"
+            android:src="@drawable/ic_filter"
+            android:tint="#ffffff" />
+
+        <ImageView
+            android:id="@+id/intruder_cancel"
+            android:layout_width="28dp"
+            android:layout_height="38dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="6dp"
+            android:src="@drawable/cancel"
+            android:tint="#ffffff" />
+    </RelativeLayout>
+
+    <!-- Results List -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_results"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="10dp" />
+
+    <!-- Detail Response Viewer Overlay -->
+
+    <FrameLayout
+        android:id="@+id/fuzzing_layout_framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:background="#aa000000"
+        android:visibility="gone" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#2f323b"
+            android:orientation="vertical" >
+
+            <android.view.View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#ff26262e"
+                android:gravity="bottom" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="4dp" >
+
+                <Spinner
+                    android:id="@+id/intruder_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="5dp"
+                    android:backgroundTint="#ffffff" />
+
+                <ImageView
+                    android:id="@+id/intruder_previous_arrow"
+                    android:layout_width="15dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="4dp"
+                    android:layout_toRightOf="@id/intruder_spinner"
+                    android:rotationY="180"
+                    android:src="@drawable/right_arrow"
+                    android:tint="#ffffff" />
+
+                <ImageView
+                    android:id="@+id/intruder_next_arrow"
+                    android:layout_width="15dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/intruder_previous_arrow"
+                    android:src="@drawable/right_arrow"
+                    android:tint="#ffffff" />
+
+                <EditText
+                    android:id="@+id/intruder_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/intruder_response_cancel"
+                    android:layout_toRightOf="@id/intruder_next_arrow"
+                    android:background="@drawable/edittext_drawable"
+                    android:hint="Search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="2dp"
+                    android:textColor="#ffffffff"
+                    android:textColorHint="#ffffffff"
+                    android:typeface="sans" />
+
+                <ImageView
+                    android:id="@+id/intruder_response_cancel"
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="4dp"
+                    android:src="@drawable/cancel"
+                    android:tint="#ffffff" />
+            </RelativeLayout>
+
+            <android.view.View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#ff26262e" />
+
+            <ScrollView
+                android:id="@+id/intruder_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#ff282a36"
+                android:padding="1dp" >
+
+                <TextView
+                    android:id="@+id/intruder_response"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="20dp"
+                    android:textColor="#ffffff"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    android:typeface="monospace" />
+            </ScrollView>
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

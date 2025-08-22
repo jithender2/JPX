@@ -1,0 +1,10 @@
+NOTICE
+
+This project is based on the Cute-Proxy project, which is licensed under the BSD 2-Clause License.
+
+- **Original repository**: https://github.com/hsiafan/cute-proxy
+- **Modifications made**: This project adapts Cute-Proxy for Android, adding new features and modifying several components to work in the Android environment.
+
+The original BSD 2-Clause License for Cute-Proxy applies to the portions of the code that are directly used from the original project. 
+
+Modifications and additions made by [Jithender].

@@ -1,0 +1,200 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/repeater_send_button"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="4dp"
+			app:backgroundTint="@null"
+            android:background="@drawable/rounded_corner"
+            android:padding="0dp"
+            android:text="Send"
+            android:textColor="#ff000000"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:typeface="serif" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/repeater_button_follow_redirect"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            
+            android:layout_margin="4dp"
+			app:backgroundTint="@null"
+			android:layout_toRightOf="@id/repeater_send_button"
+            android:background="@drawable/rounded_corner"
+            android:padding="0dp"
+            android:text="follow redirect"
+            android:textColor="#ff000000"
+            android:textSize="12sp"
+			android:visibility="gone"
+            android:textStyle="bold"
+            android:typeface="serif" />
+
+        <ImageView
+            android:id="@+id/repeator_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="14dp"
+            android:src="@drawable/ic_more"
+            android:tint="#ffffff" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/repeater_top_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2.5" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <EditText
+                    android:id="@+id/repeater_request"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:fontFamily="monospace"
+                    android:inputType="textMultiLine|textNoSuggestions"
+                    android:textColor="#ffffffff"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp" />
+            </ScrollView>
+        </LinearLayout>
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <android.view.View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#ff26262e"
+                android:gravity="bottom" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="5dp" >
+
+                <ImageView
+                    android:id="@+id/repeater_previous_arrow"
+                    android:layout_width="15dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="4dp"
+                    android:rotationY="180"
+                    android:src="@drawable/right_arrow"
+                    android:tint="#ffffff" />
+
+                <ImageView
+                    android:id="@+id/repeater_next_arrow"
+                    android:layout_width="15dp"
+                    android:layout_height="32dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="16dp"
+                    android:layout_toRightOf="@id/repeater_previous_arrow"
+                    android:src="@drawable/right_arrow"
+                    android:tint="#ffffff" />
+
+                <EditText
+                    android:id="@+id/repeater_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/repeater_show_full_screen"
+                    android:layout_toRightOf="@id/repeater_next_arrow"
+                    android:background="@drawable/edittext_drawable"
+                    android:hint="Search"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:paddingBottom="2dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="3dp"
+                    android:paddingTop="2dp"
+                    android:textColor="#ffffffff"
+                    android:textColorHint="#ffffffff"
+                    android:typeface="sans" />
+
+                <ImageView
+                    android:id="@+id/repeater_show_full_screen"
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_toLeftOf="@id/reapeater_response_more"
+                    android:src="@drawable/expand"
+                    android:tint="#ffffff" />
+
+                <ImageView
+                    android:id="@+id/reapeater_response_more"
+                    android:layout_width="15dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="12dp"
+                    android:src="@drawable/ic_more"
+                    android:tint="#ffffff" />
+            </RelativeLayout>
+
+            <android.view.View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#ff26262e" />
+
+            <ScrollView
+                android:id="@+id/repeater_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:background="#ff282a36" >
+
+                <TextView
+                    android:id="@+id/repeater_response"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:textColor="#ffffffff"
+                    android:textIsSelectable="true"
+                    android:textSize="14sp"
+                    android:typeface="monospace" />
+            </ScrollView>
+
+            <WebView
+                android:id="@+id/repeater_webview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </LinearLayout>
+    </FrameLayout>
+
+</LinearLayout>

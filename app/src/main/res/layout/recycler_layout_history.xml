@@ -1,0 +1,100 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="6dp"
+    app:cardBackgroundColor="#4A4F5A"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <!-- Row 1: Method | Path | Status -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/recycler_method_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POST"
+                android:textColor="#FFAB91"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/recycler_path_textView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="/api/v1/data"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/recycler_status_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200"
+                android:textColor="#8AE28A"
+                android:textSize="14sp"
+              />
+        </LinearLayout>
+
+        <!-- Row 2: Host -->
+        <TextView
+            android:id="@+id/recycler_host_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Host: example.com"
+            android:textColor="#B0BEC5"
+            android:textSize="14sp"
+			
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:layout_marginTop="3dp" />
+
+        <!-- Row 3: MIME Type | Length | Time -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/recycler_mime_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MIME: application/json"
+                android:textColor="#E0E0E0"
+                android:textSize="13sp"
+                android:layout_marginEnd="12dp" />
+
+            <TextView
+                android:id="@+id/recycler_content_length_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Length: 1.2 KB"
+                android:textColor="#AAAAAA"
+                android:textSize="12sp"
+                android:layout_marginEnd="12dp" />
+
+
+
+        </LinearLayout>
+
+        <!-- Row 4: Payload Info -->
+        
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

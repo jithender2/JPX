@@ -1,0 +1,246 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#2f323b"
+    android:orientation="vertical"
+    android:padding="16dp" >
+
+    <!-- Sorting Dropdown -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="Sort by"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#ffffff"
+        app:endIconMode="dropdown_menu"
+        app:endIconTint="#ffffff" >
+
+        <AutoCompleteTextView
+            android:id="@+id/sortDropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#ffffff"
+            android:inputType="none"
+            android:popupBackground="#2f323b"
+            android:textColor="#ffffff"
+            android:textColorHint="#aaaaaa" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Status Code Chips -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Filter by Status Code"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/chipGroupStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:theme="@style/MyCustomThemeOverlay"
+        app:chipSpacingHorizontal="8dp"
+        app:singleSelection="false" >
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipCpp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="200"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="201"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="204"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="301"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="302"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="304"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="400"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="401"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="403"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="404"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="500"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="502"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkable="true"
+            android:text="503"
+            android:textColor="#ffffff"
+            app:chipBackgroundColor="#3a3d44" />
+    </com.google.android.material.chip.ChipGroup>
+
+
+
+    <TextView 
+		android:id="@+id/bottom_sheet_responseTime_placeholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Filter by Response Time"
+        android:textColor="#ffffff"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:id="@+id/bottom_sheet_responseTime_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <!-- Comparison Dropdown -->
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="0dp"
+			
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:backgroundTint="#ffffff"
+            
+            app:endIconMode="dropdown_menu"
+            app:endIconTint="#ffffff"
+            app:hintTextColor="#ffffff" >
+
+            <AutoCompleteTextView
+                android:id="@+id/responseTimeComparisonDropdown"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#ffffff"
+                android:inputType="none"
+                android:popupBackground="#2f323b"
+                android:textColor="#ffffff"
+                android:textColorHint="#aaaaaa" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Response Time Input -->
+
+        <EditText
+            android:id="@+id/responseTimeEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="2"
+            android:backgroundTint="#666"
+            android:hint="Enter time (ms)"
+            android:inputType="number"
+            android:textColor="#ffffff"
+            android:textColorHint="#aaaaaa" />
+    </LinearLayout>
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/lengthRangeSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:haloColor="#4CAF50"
+        app:thumbColor="#4CAF50"
+        app:trackColor="#888" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/applyFilterButton"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corner"
+        android:padding="0dp"
+        android:text="Apply Filters"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        app:backgroundTint="@null" />
+
+</LinearLayout>

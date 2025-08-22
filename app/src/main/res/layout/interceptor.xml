@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/interceptor_button_intercept"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_corner_bg"
+            android:padding="2dp"
+            android:text="intercept"
+            android:textColor="#ffffff"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:typeface="serif"
+            app:backgroundTint="@null" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/interceptor_button_forward"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_corner"
+            android:padding="2dp"
+            android:text="forward"
+            android:textColor="#000000"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:typeface="serif"
+            app:backgroundTint="@null" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/interceptor_button_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_margin="4dp"
+            android:background="@drawable/rounded_corner"
+            android:padding="2dp"
+            android:text="edit"
+            android:textColor="#000000"
+			android:visibility="gone"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:typeface="serif"
+            app:backgroundTint="@null" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:background="#ff282a36 " >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <EditText
+                android:id="@+id/interceptor_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:background="@null"
+				android:typeface="monospace"
+				
+                android:inputType="textMultiLine|textNoSuggestions"
+                android:editable="false"
+                android:textColor="#ffffff"
+                android:textSize="13sp" />
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>
