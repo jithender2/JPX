@@ -78,7 +78,6 @@ public class HttpHistory extends Fragment {
 	PopupMenu cachedPopupMenu;
 	List<Message> allMessages = new ArrayList<>();
 	List<Message> filteredResults = new ArrayList<>();
-	
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -106,27 +105,25 @@ public class HttpHistory extends Fragment {
 		return binding.getRoot();
 	}
 
-	
-
 	private void showMessagesToUi() {
-		if(sharedViewModel!=null){
-		sharedViewModel.getMainRequests().observe(getViewLifecycleOwner(), messages -> {
-			List<Message> safeMessages = new ArrayList<>(messages);
-			/*	for (Message message : safeMessages)
-					adapter.addMessage(message);
-			});*/
+		if (sharedViewModel != null) {
+			sharedViewModel.getMainRequests().observe(getViewLifecycleOwner(), messages -> {
+				List<Message> safeMessages = new ArrayList<>(messages);
+				/*	for (Message message : safeMessages)
+						adapter.addMessage(message);
+				});*/
 
-			if (start < safeMessages.size()) {
-				for (int i = start; i < safeMessages.size(); i++) {
-					start++;
-					if (safeMessages.get(i) instanceof HttpMessage) {
-						adapter.addMessage(safeMessages.get(i));
+				if (start < safeMessages.size()) {
+					for (int i = start; i < safeMessages.size(); i++) {
+						start++;
+						if (safeMessages.get(i) instanceof HttpMessage) {
+							adapter.addMessage(safeMessages.get(i));
 
+						}
 					}
 				}
-			}
-		});
-}
+			});
+		}
 	}
 
 	public void applyScope() {

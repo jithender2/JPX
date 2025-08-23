@@ -1,6 +1,10 @@
 package com.proxy.ViewModel;
 
+import android.app.Application;
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import com.proxy.data.HttpMessage;
+import com.proxy.ui.MainRequestRepository;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,21 +21,18 @@ import java.util.Set;
  * in these data.
  */
 public class SharedViewModel extends ViewModel {
-	/**
-	 * LiveData object holding the latest HTTP message for repeater requests.
-	 * Uses MutableLiveData so the value can be modified.
-	 */
-	private final MutableLiveData<HttpMessage> repeaterRequests = new MutableLiveData<>();
 
-	private final MutableLiveData<List<Message>> mainRequests = new MutableLiveData<>(new ArrayList<>());
-	
+	private final MutableLiveData<HttpMessage> repeaterRequests = new MutableLiveData<>();
+	// private final MutableLiveData<List<Message>> mainRequests = new MutableLiveData<>(new ArrayList<>());
+
+	private final MutableLiveData<List<Message>> mainRequests = MainRequestRepository.getInstance()
+			.getMainRequests();
 
 	public LiveData<HttpMessage> getRepeaterRequests() {
 		return repeaterRequests;
 	}
 
 	public LiveData<List<Message>> getMainRequests() {
-		  
 		return mainRequests;
 	}
 
@@ -39,15 +40,12 @@ public class SharedViewModel extends ViewModel {
 		repeaterRequests.postValue(message);
 	}
 
-	public void addToMainRequests(Message message) {
-		List<Message> currentMainRequests = mainRequests.getValue();
-		
-		if (currentMainRequests != null) {
-			currentMainRequests.add(message);
-			mainRequests.postValue(currentMainRequests);
-		}
-	}
-
+	/* public void addToMainRequests(Message message) {
+	    List<Message> currentMainRequests = mainRequests.getValue();
 	
-
+	    if (currentMainRequests != null) {
+	        currentMainRequests.add(message);
+	        mainRequests.postValue(currentMainRequests);
+	    }
+	}*/
 }

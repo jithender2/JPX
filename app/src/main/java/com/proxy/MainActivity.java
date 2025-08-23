@@ -25,6 +25,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -42,6 +43,7 @@ import com.proxy.databinding.ActivityMainBinding;
 import com.proxy.listener.MessageListener;
 import com.proxy.listener.OnDataChange;
 import com.proxy.netty.Server;
+import com.proxy.service.ProxyService;
 import com.proxy.ui.Fragments.HttpHistory;
 import com.proxy.ui.Fragments.Intercept;
 import com.proxy.ui.Fragments.Repeator;
@@ -82,9 +84,7 @@ public class MainActivity extends AppCompatActivity implements OnDataChange {
 		super.onCreate(savedInstanceState);
 		binding = ActivityMainBinding.inflate(getLayoutInflater());
 		setContentView(binding.getRoot());
-
 		setSupportActionBar(binding.toolbar);
-
 		initializeViewPagerAndTabs();
 		askForPermissions();
 
@@ -92,6 +92,9 @@ public class MainActivity extends AppCompatActivity implements OnDataChange {
 			int selectedTab = savedInstanceState.getInt(SELECTED_TAB_KEY, 0);
 			binding.viewPager.setCurrentItem(selectedTab, false);
 		}
+		Intent serviceIntent = new Intent(this, ProxyService.class);
+		ContextCompat.startForegroundService(this, serviceIntent);
+
 	}
 
 	private void initializeViewPagerAndTabs() {
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements OnDataChange {
 
 		new TabLayoutMediator(binding.tabLayout, binding.viewPager,
 				(tab, position) -> tab.setText(adapter.getTitle(position))).attach();
+
 	}
 
 	public void askForPermissions() {
@@ -150,7 +154,6 @@ public class MainActivity extends AppCompatActivity implements OnDataChange {
 			break;
 		case R.id.action_scope_menu:
 			if (target.isScopeApplied()) {
-
 				item.setTitle("Apply scope");
 				target.clearScope();
 				history.clearScope();
@@ -161,7 +164,6 @@ public class MainActivity extends AppCompatActivity implements OnDataChange {
 			}
 			break;
 		case R.id.add_scope_menu:
-
 			showAlertDialogBox(domain -> {
 				target.addToScope(domain);
 				history.addToScope(domain);
@@ -251,12 +253,15 @@ public class MainActivity extends AppCompatActivity implements OnDataChange {
 		public String getTitle(int position) {
 			return position >= 0 && position < titles.size() ? titles.get(position) : "Untitled";
 		}
-	} 
+	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
+		Intent serviceIntent = new Intent(this, ProxyService.class);
+		stopService(serviceIntent);
 		fragmentMap.clear();
-		adapter=null;
+		adapter = null;
 	}
-	
+
 }

@@ -14,7 +14,6 @@ import android.text.style.BackgroundColorSpan;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.util.Base64;
-
 import android.util.Log;
 import android.util.Pair;
 import android.view.ActionMode;
@@ -34,7 +33,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-
 import androidx.appcompat.widget.PopupMenu;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
@@ -136,12 +134,10 @@ import io.netty.handler.ssl.SslProvider;
 import io.netty.handler.timeout.IdleStateHandler;
 import io.netty.handler.timeout.ReadTimeoutHandler;
 import io.netty.util.CharsetUtil;
-
 import io.netty.util.concurrent.GenericFutureListener;
 import java.io.EOFException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-
 import java.io.BufferedReader;
 import java.io.OutputStream;
 import java.io.StringReader;
@@ -179,7 +175,6 @@ import io.netty.handler.codec.http2.DefaultHttp2Headers;
 import javax.xml.parsers.DocumentBuilder;
 import java.util.zip.Inflater;
 import javax.xml.parsers.DocumentBuilderFactory;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -202,7 +197,6 @@ import java.util.zip.InflaterInputStream;
 
 public class Repeator extends Fragment implements RedirectHandler {
 	SharedViewModel sharedViewModel; // ViewModel for sharing data between components.
-
 	Protocol protocol;
 	private int currentMatchIndex = 0, currentChunkIndex = 0, PORT = DEFAULT_PORT;
 	String contentEncoding, fullResponse;
@@ -211,7 +205,6 @@ public class Repeator extends Fragment implements RedirectHandler {
 	private List<String> textChunks;
 	// Constants
 	private static final int DEFAULT_CHUNK_SIZE = 10000, DEFAULT_PORT = 443;
-
 	PopupMenu cachedPopupMenu;
 
 	HttpMessage message;
@@ -228,7 +221,6 @@ public class Repeator extends Fragment implements RedirectHandler {
 		binding = RepeatorBinding.inflate(arg0, arg1, false);
 		View view = binding.getRoot();
 		init(view);
-
 		sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 		sharedViewModel.getRepeaterRequests().observe(getViewLifecycleOwner(), new Observer<HttpMessage>() {
 			@Override

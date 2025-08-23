@@ -51,6 +51,7 @@ import com.proxy.netty.codec.frame.Http2StreamEvent;
 import com.proxy.store.Body;
 import com.proxy.ui.FuzzingActivity;
 import com.proxy.ui.Adapter.CustomTreeAdapter;
+import com.proxy.ui.MainRequestRepository;
 import com.proxy.utils.Networks;
 import com.proxy.utils.Utils;
 import io.netty.channel.ChannelDuplexHandler;
@@ -86,17 +87,16 @@ public class Target extends Fragment {
 	int currentType = 0;
 	private int currentChunkIndex;
 	private OnDataChange exportDataListener;
-	private final Set<String> processedMessages = new HashSet<>(); // Track unique hosts or IDs
+	private final Set<String> processedMessages = new HashSet<>();
 	PopupMenu cachedPopupMenu;
 	private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-	
 
 	public Target(OnDataChange listener) {
 		exportDataListener = listener;
 	}
 
 	private List<String> textChunks;
-
+	int start = 0;
 	private static final int DEFAULT_CHUNK_SIZE = 8000, DEFAULT_PORT = 443;
 	private boolean applyScope = false;
 	Server server;
@@ -106,22 +106,24 @@ public class Target extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater arg0, ViewGroup arg1, Bundle arg2) {
-		//	View view = arg0.inflate(R.layout.target, arg1, false);
 		binding = TargetBinding.inflate(arg0, arg1, false);
 		View view = binding.getRoot();
 		initialize();
 		AppContext context = new AppContext(requireContext());
 		clickListeners();
 		setupSpinner();
-		start(context);
+		showMessagesToUi();
+		//	start(context);
 		InitContext initContext = new InitContext(requireContext());
 		initContext.init();
+		setupLogCallBack();
 		return view;
 	}
 
 	@Override
 	public void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
 	}
 
@@ -137,7 +139,6 @@ public class Target extends Fragment {
 			try {
 				server.start();
 			} catch (Exception e) {
-				
 
 			}
 		});
@@ -184,10 +185,30 @@ public class Target extends Fragment {
 	}
 
 	private void AddToViewModel(Message message) {
-		sharedViewModel.addToMainRequests(message); // Non-blocking
+		//		sharedViewModel.addToMainRequests(message); // Non-blocking
 	}
 
-	
+	private void showMessagesToUi() {
+		if (sharedViewModel != null) {
+			sharedViewModel.getMainRequests().observe(getViewLifecycleOwner(), messages -> {
+				List<Message> safeMessages = new ArrayList<>(messages);
+				/*	for (Message message : safeMessages)
+						adapter.addMessage(message);
+				});*/
+
+				if (start < safeMessages.size()) {
+					for (int i = start; i < safeMessages.size(); i++) {
+						start++;
+						if (safeMessages.get(i) instanceof HttpMessage) {
+							adapter.addNewMessage(safeMessages.get(i));
+
+						}
+					}
+				}
+			});
+		}
+	}
+
 	private void setHttpMessage(HttpMessage message, int type) {
 		StringBuilder httpMessageBuilder = new StringBuilder();
 		if (type == 0) {
@@ -196,7 +217,6 @@ public class Target extends Fragment {
 			String headers = String.join("\n", httpHeaders.rawLines());
 			if (message.requestBody().finished()) {
 				body = Utils.getBody(message.requestBody());
-
 				if (body == null)
 					body = "";
 			}
@@ -343,7 +363,6 @@ public class Target extends Fragment {
 	}
 
 	private void ShowPopUpMenu() {
-
 		if (cachedPopupMenu == null) {
 			cachedPopupMenu = new PopupMenu(getActivity(), binding.targetMore);
 			cachedPopupMenu.getMenuInflater().inflate(R.menu.menu, cachedPopupMenu.getMenu());
@@ -357,7 +376,6 @@ public class Target extends Fragment {
 					intent.putExtra("message", httpMessage);
 					startActivity(intent);
 				}
-
 				return true;
 			});
 		}
@@ -501,5 +519,4 @@ public class Target extends Fragment {
 		}
 	}
 
-	
 }
